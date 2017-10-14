@@ -46,13 +46,13 @@ def neural_network(batch_size, epochs, hidden_layer, hidden_neuro, dropout, opti
     return model.evaluate(X_test, y_test, verbose=2)
 
 
-batch_size = [32, 64, 128, 256, 512, 1024]
-epochs = [10, 20, 30, 50, 100, 200]
-hidden_layer = [0, 1, 2, 3, 4]
-hidden_neuro = [8, 16, 32, 64, 128]
-dropout = [0., 0.1, 0.2, 0.3, 0.4, 0.5]
-optimizer = [SGD(), Adam(), RMSprop(), Adagrad(), Adadelta(), Adamax(), Nadam()]
-activations = ['relu', 'tanh', 'sigmoid', 'softmax', 'elu', 'selu', 'softplus', 'softsign', 'hard_sigmoid', 'linear']
+batch_size = [32, 128, 256, 1024]
+epochs = [20, 50, 100, 200]
+hidden_layer = [0, 1, 3]
+hidden_neuro = [8, 32, 64, 128]
+dropout = [0., 0.1, 0.2]
+optimizer = [SGD(), Adam(), RMSprop()]
+activations = ['relu', 'tanh', 'sigmoid']
 
 scores = []
 
