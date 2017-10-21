@@ -3,7 +3,6 @@ from keras.datasets import mnist
 from keras import utils
 from keras.layers import Dense, Dropout
 from keras.models import Sequential
-from keras.optimizers import SGD, Adam, RMSprop, Adagrad, Adadelta, Adamax, Nadam, TFOptimizer
 
 np.random.seed(1671)
 
@@ -27,6 +26,12 @@ def get_data():
 
     return (X_train, y_train), (X_test, y_test)
 
+def check_has_regist(params):
+    with open('status_neural_network', 'r') as file:
+        for line in file.readlines():
+            if str(params) in line:
+                return True
+        return False
 
 def neural_network(batch_size, epochs, hidden_layer, hidden_neuro, dropout, optimizer, activation):
     (X_train, y_train), (X_test, y_test) = get_data()
@@ -64,6 +69,9 @@ for b in batch_size:
                     for o in optimizer:
                         for a in activations:
                             params = (b, e, hl, hn, d, o, a)
+                            if check_has_regist(params):
+                                continue
+
                             print('\nStart: ', params)
                             score = neural_network(batch_size=params[0], epochs=params[1], hidden_layer=params[2],
                                                    hidden_neuro=params[3], dropout=params[4], optimizer=params[5],
